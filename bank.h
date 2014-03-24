@@ -2,6 +2,8 @@
 #define __BANK_H__
 
 _Monitor Bank {
+    const unsigned int nStudents;
+
   public:
     Bank( unsigned int numStudents );
     void deposit( unsigned int id, unsigned int amount );
