@@ -1,8 +1,12 @@
 #ifndef __PRINTER_H__
 #define __PRINTER_H__
 
+_Cormonitor Printer {
+    const unsigned int nStudents;
+    const unsigned int nVendingMachines;
+    const unsigned int nCouriers;
 
-_Monitor / _Cormonitor Printer {
+    void main();    
   public:
     enum Kind { Parent, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
     Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers );

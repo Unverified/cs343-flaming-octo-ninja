@@ -3,6 +3,8 @@
 #include <unistd.h> //getpid();
 
 #include "config.h"
+#include "printer.h"
+
 #include "MPRNG.h"
 
 
@@ -38,11 +40,14 @@ void uMain::main() {
         configPath = argv[1];
     case 1:
         cout << seed << endl;
+        mprng.seed( seed );
         processConfigFile( configPath, cfgParms );
       break;
     default:
         usage( argv );
     }
+
+    Printer printer( cfgParms.numStudents, cfgParms.numVendingMachines, cfgParms.numCouriers );
 
 }
 

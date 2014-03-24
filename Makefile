@@ -11,7 +11,7 @@ CXX = u++					                    # compiler
 CXXFLAGS = -g -Wall -MMD                        # compiler flags
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS = main.o config.o				# object files forming executable
+OBJECTS = main.o config.o printer.o bank.o				# object files forming executable
 DEPENDS = ${OBJECTS:.o=.d}  # substitute ".o" with ".d"
 EXEC = soda                 # executable name
 
@@ -29,5 +29,5 @@ ${OBJECTS} : ${MAKEFILE_NAME}			# OPTIONAL : changes to this file => recompile
 -include ${DEPENDS}				# include *.d files containing program dependences
 
 clean :						# remove files that can be regenerated
-	rm -f ${OBJECTS}.d ${OBJECTS}.o ${EXEC}
+	rm -f ${DEPENDS} ${OBJECTS} ${EXEC}
 
