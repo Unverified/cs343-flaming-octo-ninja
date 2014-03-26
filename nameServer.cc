@@ -16,7 +16,6 @@ NameServer::~NameServer() {
 
 void NameServer::main() {
     printer.print( Printer::NameServer, 'S' );
-
     for(;;) {
         _Accept( ~NameServer ) {
             break;
@@ -26,6 +25,7 @@ void NameServer::main() {
 
         }
     }
+    printer.print( Printer::NameServer, 'F' );
 }
     
 void NameServer::VMregister( VendingMachine *vendingmachine ) {

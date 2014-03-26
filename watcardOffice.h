@@ -13,19 +13,17 @@ _Task WATCardOffice {
     };
 
     _Task Courier {
-        Printer &mCPrinter;
-        unsigned int mId;
-
+        Printer &printer;
+        const unsigned int id;
         void main();
       public:
         Courier(Printer &printer, unsigned int id);
     };                 // communicates with bank
 
-    Printer &mPrinter;
-    Bank &mBank;
-    unsigned int mNumCouriers;
-
-    Courier **mCouriers;
+    Printer &printer;
+    Bank &bank;
+    const unsigned int nCouriers;
+    Courier **couriers;
 
     void main();
   public:

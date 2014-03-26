@@ -1,25 +1,30 @@
 #include "watcardOffice.h"
 
-
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers )
-  : mPrinter(prt), mBank(bank), mNumCouriers(numCouriers) {
+  : printer( prt ), bank( bank ), nCouriers( numCouriers ) {
 
-    mCouriers = new Courier*[mNumCouriers];
-    for(unsigned int i = 0; i < mNumCouriers; i++) {
-        mCouriers[i] = new Courier(mPrinter, i);
+    couriers = new Courier*[nCouriers];
+    for( unsigned int i = 0; i < nCouriers; i += 1 ) {
+        couriers[i] = new Courier( prt, i );
     }
 }
 
 WATCardOffice::~WATCardOffice() {
-    for(unsigned int i = 0; i < mNumCouriers; i++) {
-        delete mCouriers[i];
+    for( unsigned int i = 0; i < nCouriers; i += 1 ) {
+        delete couriers[i];
     }
 
-    delete[] mCouriers;
+    delete[] couriers;
 }
 
 void WATCardOffice::main() {
-    mPrinter.print(Printer::WATCardOffice, 'S');
+    printer.print( Printer::WATCardOffice, 'S' );
+    for(;;){
+        _Accept( ~WATCardOffice ) {
+            break;
+        }
+    }
+    printer.print( Printer::WATCardOffice, 'F' );
 }
 
 WATCard::FWATCard WATCardOffice::create( unsigned int sid, unsigned int amount ) {
@@ -40,11 +45,18 @@ WATCardOffice::Job *WATCardOffice::requestWork() {
     return NULL;
 }
 
-WATCardOffice::Courier::Courier(Printer &printer, unsigned int id) : mCPrinter(printer), mId(id) {
+WATCardOffice::Courier::Courier( Printer &printer, unsigned int id )
+  : printer( printer ), id( id ) {
 
 }
 
 void WATCardOffice::Courier::main() {
-  mCPrinter.print(Printer::Courier, mId, 'S');
+    printer.print( Printer::Courier, id, 'S' );
+    for(;;) {
+        _Accept( ~Courier ) {
+            break;
+        }
+    }
+    printer.print( Printer::Courier, id, 'F' );
 }
 

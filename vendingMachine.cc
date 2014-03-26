@@ -13,7 +13,7 @@ VendingMachine::VendingMachine( Printer &prt
 
 void VendingMachine::main() {
     nameServer.VMregister( this );
-    printer.print( Printer::Vending, id, 'S' );
+    printer.print( Printer::Vending, id, 'S', cost() );
 
     for(;;) {
         _Accept( ~VendingMachine ) {
