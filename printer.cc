@@ -69,7 +69,8 @@ Printer::Entry Printer::createBufferEntry(unsigned int col, char state, int valu
 }
 
 void Printer::addBufferEntry(unsigned int col, char state) {
-  addBufferEntry(col, state, -1, -1, false);
+  if(state == 'F') printFinish(col);
+  else addBufferEntry(col, state, -1, -1, false);
 }
 
 void Printer::addBufferEntry(unsigned int col, char state, int value1) {	
@@ -96,9 +97,11 @@ void Printer::addBufferEntry(unsigned int col, char state, int value1, int value
   mBuffer.insert(it, createBufferEntry(col, state, value1, value2, finisher));
 }
 
-void Printer::fillBufferWithEllipses(unsigned int finishedCol) {// Fill all the empty spaces in the buffer with finished state
+void Printer::printFinish(unsigned int finishedCol) {// Fill all the empty spaces in the buffer with finished state
+  flush();
   for(unsigned int i = 0; i < mNumCols; i++) {			// Add entries behind of the finished task in the buffer
-    if(i != finishedCol) addBufferEntry(i, 'F');
+    if(i == finishedCol) addBufferEntry(i, 'F', -1, -1, true);
+    else addBufferEntry(i, 'F', -1, -1, false);
   }
 }
 

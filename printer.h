@@ -41,7 +41,7 @@ _Monitor Printer {
     void addBufferEntry(unsigned int col, char state, int value1, int value2);	// Add a buffer entry, flushes if the entry already exists
     void addBufferEntry(unsigned int col, char state, int value1, int value2, bool finisher);	// Add a buffer entry, flushes if the entry already exists
     void flush();							// Flush the buffer
-    void fillBufferWithEllipses(unsigned int finisherCol);			// Fill the buffer with Finish states that will be printed as ...
+    void printFinish(unsigned int finisherCol);			// Fill the buffer with Finish states that will be printed as ...
   public:
     enum Kind { Parent, WATCardOffice, NameServer, Truck, BottlingPlant, Student, Vending, Courier };
     Printer( unsigned int numStudents, unsigned int numVendingMachines, unsigned int numCouriers );
