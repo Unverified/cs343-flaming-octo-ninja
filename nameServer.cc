@@ -1,27 +1,27 @@
 #include "nameServer.h"
 
 NameServer::NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents )
-  : mPrinter( prt ), nVendingMachines( numVendingMachines ), nStudents( numStudents ) {
+  : printer( prt ), nVendingMachines( numVendingMachines ), nStudents( numStudents ) {
+    vendingMachines = new VendingMachine*[numVendingMachines];
+}
 
+NameServer::~NameServer() {
+    delete[] vendingMachines;
 }
 
 void NameServer::main() {
-  mPrinter.print(Printer::NameServer, 'S');
+    printer.print( Printer::NameServer, 'S' );
 }
     
 void NameServer::VMregister( VendingMachine *vendingmachine ) {
-  
+    vendingMachines[vendingmachine->getId()] = vendingmachine;  
 }
 
 VendingMachine *NameServer::getMachine( unsigned int id ) {
-  bool implemented = false;
-  assert(implemented);
-  return NULL;
+    return vendingMachines[id];
 }
 
 VendingMachine **NameServer::getMachineList() {
-  bool implemented = false;
-  assert(implemented);
-  return NULL;
+    return vendingMachines;
 }
 

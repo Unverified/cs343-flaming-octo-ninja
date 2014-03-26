@@ -14,7 +14,6 @@
 
 #include "MPRNG.h"
 
-
 MPRNG mprng;
 using namespace std;
 

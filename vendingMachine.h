@@ -7,11 +7,11 @@
 _Task NameServer;
 
 _Task VendingMachine {
-    Printer &mPrinter;
-    NameServer &mNameServer;
-    unsigned int mId;
-    unsigned int mSodaCost;
-    unsigned int mMaxStockPerFlavour;
+    Printer &printer;
+    NameServer &nameServer;
+    const unsigned int id;
+    const unsigned int price;
+    const unsigned int maxStockPerFlavour;
 
     void main();
   public:
