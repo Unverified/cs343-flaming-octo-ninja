@@ -1,6 +1,7 @@
 #ifndef __PRINTER_H__
 #define __PRINTER_H__
 
+#include <iostream>
 #include <list>
 
 _Monitor Printer {

@@ -1,6 +1,3 @@
-#include "printer.h"
-#include "bank.h"
-
 #include "parent.h"
 
 Parent::Parent( Printer &prt, 

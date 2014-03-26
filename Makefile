@@ -11,7 +11,7 @@ CXX = u++					                    # compiler
 CXXFLAGS = -g -Wall -MMD                        # compiler flags
 MAKEFILE_NAME = ${firstword ${MAKEFILE_LIST}}	# makefile name
 
-OBJECTS = main.o config.o printer.o watcard.o bank.o				# object files forming executable
+OBJECTS = main.o config.o printer.o watcard.o watcardOffice.o bank.o nameServer.o vendingMachine.o bottlingPlant.o parent.o student.o truck.o # object files forming executable
 DEPENDS = ${OBJECTS:.o=.d}  # substitute ".o" with ".d"
 EXEC = soda                 # executable name
 

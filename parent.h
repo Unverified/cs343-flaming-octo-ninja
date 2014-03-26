@@ -1,11 +1,14 @@
 #ifndef __PARENT_H__
 #define __PARENT_H__
 
+#include "printer.h"
+#include "bank.h"
+
 _Task Parent {
     Printer &printer;
     Bank &bank;
-    const unsigned int delay;
     const unsigned int nStudents;
+    const unsigned int delay;
 
     void main();
   public:

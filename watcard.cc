@@ -1,5 +1,3 @@
-#include <uFuture.h>
-
 #include "watcard.h"
 
 WATCard::WATCard() {

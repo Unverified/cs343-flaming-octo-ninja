@@ -1,7 +1,3 @@
-#include "printer.h"
-#include "nameServer.h"
-#include "watcardOffice.h"
-
 #include "student.h"
 
 Student::Student( Printer &prt, 
@@ -14,6 +10,7 @@ Student::Student( Printer &prt,
   , cardOffice( cardOffice )
   , id ( id )
   , maxPurchases( maxPurchases ) {
+
 }
 
 void Student::main() {

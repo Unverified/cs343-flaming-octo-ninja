@@ -1,7 +1,3 @@
-#include "printer.h"
-#include "nameServer.h"
-#include "bottlingPlant.h"
-
 #include "truck.h"
 
 Truck::Truck( Printer &prt

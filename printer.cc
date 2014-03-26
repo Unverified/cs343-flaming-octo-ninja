@@ -1,5 +1,3 @@
-#include <iostream>
-#include <list>
 #include "printer.h"
 
 using namespace std;
@@ -98,8 +96,8 @@ void Printer::addBufferEntry(unsigned int col, char state, int value1, int value
   mBuffer.insert(it, createBufferEntry(col, state, value1, value2, finisher));
 }
 
-void Printer::fillBufferWithEllipses(unsigned int finishedCol) {		// Fill all the empty spaces in the buffer with finished state
-  for(unsigned int i = 0; i < mNumCols; i++) {		// Add entries behind of the finished task in the buffer
+void Printer::fillBufferWithEllipses(unsigned int finishedCol) {// Fill all the empty spaces in the buffer with finished state
+  for(unsigned int i = 0; i < mNumCols; i++) {			// Add entries behind of the finished task in the buffer
     if(i != finishedCol) addBufferEntry(i, 'F');
   }
 }
