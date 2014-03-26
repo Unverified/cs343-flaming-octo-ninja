@@ -5,7 +5,7 @@ Student::Student( Printer &prt,
                   WATCardOffice &cardOffice, 
                   unsigned int id,
                   unsigned int maxPurchases )
-  : printer( prt )
+  : mPrinter( prt )
   , nameServer( nameServer )
   , cardOffice( cardOffice )
   , id ( id )
@@ -14,6 +14,6 @@ Student::Student( Printer &prt,
 }
 
 void Student::main() {
-
+  mPrinter.print(Printer::Student, id, 'S');
 }
 

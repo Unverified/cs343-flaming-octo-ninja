@@ -10,10 +10,15 @@ BottlingPlant::BottlingPlant( Printer &prt, NameServer &nameServer, unsigned int
      mMaxStockPerFlavour(maxStockPerFlavour),
      mTimeBetweenShipments(timeBetweenShipments) {
 
+  mTruck = new Truck( prt, nameServer, *this, numVendingMachines, maxStockPerFlavour );
+}
+
+BottlingPlant::~BottlingPlant() {
+  delete mTruck;
 }
 
 void BottlingPlant::main() {
-
+  mPrinter.print(Printer::BottlingPlant, 'S');
 }
 
 bool BottlingPlant::getShipment( unsigned int cargo[] ) {

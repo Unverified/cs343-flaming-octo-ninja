@@ -6,7 +6,7 @@
 #include "watcardOffice.h"
 
 _Task Student {
-    Printer &printer;
+    Printer &mPrinter;
     NameServer &nameServer;
     WATCardOffice &cardOffice;
     const unsigned int id;

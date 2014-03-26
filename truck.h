@@ -3,10 +3,11 @@
 
 #include "printer.h"
 #include "nameServer.h"
-#include "bottlingPlant.h"
+
+_Task BottlingPlant;
 
 _Task Truck {
-    Printer &printer;
+    Printer &mPrinter;
     NameServer &nameServer;
     BottlingPlant &plant;
     const unsigned int nVendingMachines;

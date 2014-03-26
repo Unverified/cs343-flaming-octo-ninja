@@ -2,13 +2,13 @@
 
 #include "vendingMachine.h"
 
-void VendingMachine::main() {
-
-}
-
 VendingMachine::VendingMachine( Printer &prt, NameServer &nameServer, unsigned int id, unsigned int sodaCost, unsigned int maxStockPerFlavour )
   : mPrinter(prt), mNameServer(nameServer), mId(id), mSodaCost(sodaCost), mMaxStockPerFlavour(maxStockPerFlavour) {
 
+}
+
+void VendingMachine::main() {
+  mPrinter.print(Printer::Vending, mId, 'S');
 }
 
 VendingMachine::Status VendingMachine::buy( Flavours flavour, WATCard &card ) {

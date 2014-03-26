@@ -5,7 +5,7 @@
 #include "vendingMachine.h"
 
 _Task NameServer {
-    Printer &printer;
+    Printer &mPrinter;
     unsigned int nVendingMachines;
     unsigned int nStudents;
 

@@ -1,3 +1,5 @@
+#include "bottlingPlant.h"
+
 #include "truck.h"
 
 Truck::Truck( Printer &prt
@@ -5,7 +7,7 @@ Truck::Truck( Printer &prt
             , BottlingPlant &plant
             , unsigned int numVendingMachines
             , unsigned int maxStockPerFlavour )
-  : printer( prt )
+  : mPrinter( prt )
   , nameServer( nameServer )
   , plant( plant )
   , nVendingMachines( numVendingMachines )
@@ -13,5 +15,5 @@ Truck::Truck( Printer &prt
 }
 
 void Truck::main() {
-
+  mPrinter.print(Printer::Truck, 'S');
 }

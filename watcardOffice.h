@@ -13,19 +13,25 @@ _Task WATCardOffice {
     };
 
     _Task Courier {
+        Printer &mCPrinter;
+        unsigned int mId;
+
         void main();
       public:
-        Courier();
+        Courier(Printer &printer, unsigned int id);
     };                 // communicates with bank
 
     Printer &mPrinter;
     Bank &mBank;
     unsigned int mNumCouriers;
 
+    Courier **mCouriers;
+
     void main();
   public:
     _Event Lost {};                        // uC++ exception type, like "struct"
     WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers );
+    ~WATCardOffice();
     WATCard::FWATCard create( unsigned int sid, unsigned int amount );
     WATCard::FWATCard transfer( unsigned int sid, unsigned int amount, WATCard *card );
     Job *requestWork();

@@ -1,11 +1,12 @@
 #include "nameServer.h"
 
 NameServer::NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents )
-  : printer( prt ), nVendingMachines( numVendingMachines ), nStudents( numStudents ) {
+  : mPrinter( prt ), nVendingMachines( numVendingMachines ), nStudents( numStudents ) {
 
 }
 
-void NameServer::main(){
+void NameServer::main() {
+  mPrinter.print(Printer::NameServer, 'S');
 }
     
 void NameServer::VMregister( VendingMachine *vendingmachine ) {
