@@ -7,7 +7,7 @@
 _Task BottlingPlant;
 
 _Task Truck {
-    Printer &mPrinter;
+    Printer &printer;
     NameServer &nameServer;
     BottlingPlant &plant;
     const unsigned int nVendingMachines;

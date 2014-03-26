@@ -6,14 +6,14 @@
 #include "truck.h"
 
 _Task BottlingPlant {
-    Printer &mPrinter;
-    NameServer &mNameServer;
-    unsigned int mNumVendingMachines;
-    unsigned int mMaxShippedPerFlavour;
-    unsigned int mMaxStockPerFlavour;
-    unsigned int mTimeBetweenShipments;
+    Printer &printer;
+    NameServer &nameServer;
+    const unsigned int nVendingMachines;
+    const unsigned int maxShippedPerFlavour;
+    const unsigned int maxStockPerFlavour;
+    const unsigned int timeBetweenShipments;
 
-    Truck *mTruck;
+    Truck *truck;
 
     void main();
   public:

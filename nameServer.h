@@ -8,8 +8,11 @@ _Task NameServer {
     Printer &printer;
     const unsigned int nVendingMachines;
     const unsigned int nStudents;
-    VendingMachine **vendingMachines;
 
+    unsigned int lastId;
+    unsigned int registered;
+    VendingMachine **vendingMachines;
+    
     void main();
   public:
     NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents );

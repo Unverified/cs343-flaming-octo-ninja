@@ -7,7 +7,7 @@ Truck::Truck( Printer &prt
             , BottlingPlant &plant
             , unsigned int numVendingMachines
             , unsigned int maxStockPerFlavour )
-  : mPrinter( prt )
+  : printer( prt )
   , nameServer( nameServer )
   , plant( plant )
   , nVendingMachines( numVendingMachines )
@@ -15,5 +15,7 @@ Truck::Truck( Printer &prt
 }
 
 void Truck::main() {
-  mPrinter.print(Printer::Truck, 'S');
+    printer.print(Printer::Truck, 'S');
+
+
 }

@@ -12,7 +12,14 @@ VendingMachine::VendingMachine( Printer &prt
 }
 
 void VendingMachine::main() {
-  printer.print( Printer::Vending, id, 'S' );
+    nameServer.VMregister( this );
+    printer.print( Printer::Vending, id, 'S' );
+
+    for(;;) {
+        _Accept( ~VendingMachine ) {
+            break;
+        }
+    }
 }
 
 VendingMachine::Status VendingMachine::buy( Flavours flavour, WATCard &card ) {
