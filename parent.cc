@@ -4,13 +4,13 @@ Parent::Parent( Printer &prt,
                 Bank &bank, 
                 unsigned int numStudents, 
                 unsigned int parentalDelay )
-  : mPrinter( prt )
+  : printer( prt )
   , bank( bank )
   , nStudents( numStudents )
   , delay( parentalDelay ) {
 }
 
 void Parent::main() {
-  mPrinter.print(Printer::Parent, 'S');
+    printer.print( Printer::Parent, 'S' );
 }
 

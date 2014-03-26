@@ -6,14 +6,14 @@
 #include "watcardOffice.h"
 
 _Task Student {
-    Printer &mPrinter;
+    Printer &printer;
     NameServer &nameServer;
     WATCardOffice &cardOffice;
     const unsigned int id;
     unsigned int maxPurchases;
 
-    unsigned int mBottles;
-    unsigned int mFavFlav;
+    unsigned int purchases;
+    unsigned int flavour;
 
     void main();
   public:
