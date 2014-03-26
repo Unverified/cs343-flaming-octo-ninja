@@ -21,7 +21,6 @@ void NameServer::main() {
         _Accept( ~NameServer ) {
             break;
         }or _When ( registered < nVendingMachines ) _Accept( VMregister ) {
-            printer.print( Printer::NameServer, 'R', lastId );
             registered += 1;
         }or _When ( registered == nVendingMachines ) _Accept( getMachine, getMachineList ) {
 
@@ -30,8 +29,8 @@ void NameServer::main() {
 }
     
 void NameServer::VMregister( VendingMachine *vendingmachine ) {
-    lastId = vendingmachine->getId();
     vendingMachines[vendingmachine->getId()] = vendingmachine;  
+    printer.print( Printer::NameServer, 'R', vendingmachine->getId() );
 }
 
 VendingMachine *NameServer::getMachine( unsigned int id ) {
