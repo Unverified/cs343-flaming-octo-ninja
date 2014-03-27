@@ -17,5 +17,11 @@ Truck::Truck( Printer &prt
 void Truck::main() {
     printer.print(Printer::Truck, 'S');
 
+    for(;;) {
+        _Accept( ~Truck ) {
+            break;
+        }
+    }
 
+    printer.print( Printer::Truck, 'F' );
 }

@@ -7,23 +7,30 @@
 
 _Task WATCardOffice {
     struct Job {                           // marshalled arguments and return future
-        //Args args;                         // call arguments (YOU DEFINE "Args")
+        unsigned int sid;
+        unsigned int amount;
+        WATCard *card;
         WATCard::FWATCard result;                   // return future
-        Job( /*Args args ) : args( args*/ ) {}
+        Job( unsigned int sid, unsigned int amount, WATCard *card ) : sid( sid ), amount( amount ), card( card ) {}
     };
 
     _Task Courier {
         Printer &printer;
+        WATCardOffice &cardOffice;
+        Bank &bank;
         const unsigned int id;
         void main();
       public:
-        Courier(Printer &printer, unsigned int id);
+        Courier(Printer &printer, WATCardOffice &cardOffice, Bank &bank, unsigned int id);
+        ~Courier(){}
     };                 // communicates with bank
 
     Printer &printer;
     Bank &bank;
     const unsigned int nCouriers;
     Courier **couriers;
+    std::list<Job*> jobs;
+    uCondition condCouriers;
 
     void main();
   public:

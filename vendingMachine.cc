@@ -9,7 +9,7 @@ VendingMachine::VendingMachine( Printer &prt
                               , unsigned int maxStockPerFlavour )
   : printer( prt ), nameServer( nameServer ), id( id ), price( sodaCost ), maxStockPerFlavour( maxStockPerFlavour ) {
     for( unsigned int i; i < FINAL_COUNT; i += 1 ) {
-        stock[i] = 0;   
+        stock[i] = 1;   
     }
 
     nameServer.VMregister( this );
@@ -28,15 +28,17 @@ void VendingMachine::main() {
 }
 
 VendingMachine::Status VendingMachine::buy( Flavours flavour, WATCard &card ) {
-    bool implemented = false;
-    assert( implemented );
-    return Status();
+    if(stock[flavour] == 0) return VendingMachine::STOCK;
+    else if (card.getBalance() < price) return VendingMachine::FUNDS;
+
+    card.withdraw(price);
+    printer.print(Printer::Vending, id, 'B', flavour, stock[flavour]);
+
+    return VendingMachine::BUY;
 }
 
 unsigned int *VendingMachine::inventory() {
-    bool implemented = false;
-    assert( implemented );
-    return 0;
+    return stock;
 }
 
 void VendingMachine::restocked() {

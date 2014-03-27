@@ -21,6 +21,14 @@ BottlingPlant::~BottlingPlant() {
 
 void BottlingPlant::main() {
     printer.print( Printer::BottlingPlant, 'S' );
+
+    for(;;) {
+        _Accept( ~BottlingPlant ) {
+            break;
+        }
+    }
+
+    printer.print( Printer::BottlingPlant, 'F' );
 }
 
 bool BottlingPlant::getShipment( unsigned int cargo[] ) {

@@ -12,13 +12,14 @@ _Task NameServer {
     unsigned int lastId;
     unsigned int registered;
     VendingMachine **vendingMachines;
+    int *studentAssignedVMs;
     
     void main();
   public:
     NameServer( Printer &prt, unsigned int numVendingMachines, unsigned int numStudents );
     ~NameServer();
     void VMregister( VendingMachine *vendingmachine );
-    VendingMachine *getMachine( unsigned int id );
+    VendingMachine *getMachine( unsigned int sid );
     VendingMachine **getMachineList();
 };
 
