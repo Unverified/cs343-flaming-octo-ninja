@@ -3,6 +3,9 @@
 
 extern MPRNG mprng;
 
+static const unsigned int MIN_CASH = 1;
+static const unsigned int MAX_CASH = 3;
+
 Parent::Parent( Printer &prt, 
                 Bank &bank, 
                 unsigned int numStudents, 
@@ -19,8 +22,8 @@ void Parent::main() {
         _Accept( ~Parent ) {
             break;
         } _Else { 
-            unsigned int winner = mprng(nStudents-1);
-            unsigned int amount = mprng(1, 3);
+            unsigned int winner = mprng( nStudents-1 );
+            unsigned int amount = mprng( MIN_CASH, MAX_CASH );
             
             yield( delay );
             bank.deposit( winner, amount );
