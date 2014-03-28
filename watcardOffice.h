@@ -4,6 +4,7 @@
 #include "printer.h"
 #include "bank.h"
 #include "watcard.h"
+#include <queue>
 
 _Task WATCardOffice {
     struct Job {                           // marshalled arguments and return future
@@ -29,8 +30,11 @@ _Task WATCardOffice {
     Bank &bank;
     const unsigned int nCouriers;
     Courier **couriers;
-    std::list<Job*> jobs;
-    uCondition condCouriers;
+    std::queue<Job*> jobs;
+
+    unsigned int bufId;
+    unsigned int bufAmt; 
+    Job *bufJob;
 
     void main();
   public:

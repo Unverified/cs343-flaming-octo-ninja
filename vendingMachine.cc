@@ -21,24 +21,23 @@ void VendingMachine::main() {
         _Accept( ~VendingMachine ) {
             break;
         }or _Accept( buy, inventory, restocked ) {
-
         }
     }
     printer.print( Printer::Vending, id, 'F' );
 }
 
 VendingMachine::Status VendingMachine::buy( Flavours flavour, WATCard &card ) {
-    if(stock[flavour] == 0) return VendingMachine::STOCK;
-    else if (card.getBalance() < price) return VendingMachine::FUNDS;
+  if( stock[flavour] == 0 ) { return STOCK; }
+  if( card.getBalance() < cost() ) { return FUNDS; }
+    
+    card.withdraw( cost() );
+    printer.print( Printer::Vending, id, 'B', flavour, stock[flavour] );
 
-    card.withdraw(price);
-    printer.print(Printer::Vending, id, 'B', flavour, stock[flavour]);
-
-    return VendingMachine::BUY;
+  return BUY;
 }
 
 unsigned int *VendingMachine::inventory() {
-    return stock;
+  return stock;
 }
 
 void VendingMachine::restocked() {
@@ -47,10 +46,10 @@ void VendingMachine::restocked() {
 }
 
 _Nomutex unsigned int VendingMachine::cost() {
-    return price;
+  return price;
 }
 
 _Nomutex unsigned int VendingMachine::getId() {
-    return id;
+  return id;
 }
 

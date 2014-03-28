@@ -15,11 +15,7 @@ Student::Student( Printer &prt,
   , maxPurchases( maxPurchases ) {
       
   purchases = mprng( 1, maxPurchases );
-  flavour = (VendingMachine::Flavours)mprng( 3 );
-  fwatCard = cardOffice.create(id, 5);
-  machine = nameServer.getMachine(id);
-
-  printer.print(Printer::Student, id, 'V', machine->getId());
+  flavour = (VendingMachine::Flavours) mprng( VendingMachine::FINAL_COUNT - 1 );
 }
 
 Student::~Student() {
@@ -28,38 +24,37 @@ Student::~Student() {
 
 void Student::main() {
     printer.print( Printer::Student, id, 'S', flavour, purchases);
+    fwatCard = cardOffice.create( id, 5 );
 
-    VendingMachine::Status purchaseStatus;    
-    for(;purchases > 0;) {
-        yield(mprng(1, 10));
+    VendingMachine::Status purchaseStatus = VendingMachine::STOCK;    
+    while( purchases > 0 ) {
+        switch( purchaseStatus ) {
+        case VendingMachine::STOCK:
+            machine = nameServer.getMachine( id );
+            printer.print( Printer::Student, id, 'V', machine->getId() );
+          break;
+        case VendingMachine::FUNDS:
+            fwatCard = cardOffice.transfer( id, machine->cost() + 5, fwatCard );  
+          break;
+        case VendingMachine::BUY:
+            printer.print( Printer::Student, id, 'B', flavour, machine->inventory()[flavour] );
+            purchases -= 1;
+        default:
+          break;
+        }
+
+        yield( mprng( 1, 10 ) );
 
         for(;;) {
             try {
-                purchaseStatus = machine->buy(flavour, *fwatCard());
+                purchaseStatus = machine->buy( flavour, *fwatCard() );
                 break;
             } catch ( WATCardOffice::Lost ) {
-                printer.print(Printer::Student, id, 'L');
-                fwatCard = cardOffice.create(id, 5);
+                printer.print( Printer::Student, id, 'L' );
+                fwatCard = cardOffice.create( id, 5 );
             }
         }
-
-        switch(purchaseStatus) {
-          case VendingMachine::STOCK:
-            machine = nameServer.getMachine(id);
-            printer.print(Printer::Student, id, 'V', machine->getId());
-            break;
-          case VendingMachine::FUNDS:
-            fwatCard = cardOffice.transfer(id, machine->cost() + 5, fwatCard);
-            
-            break;
-          case VendingMachine::BUY:
-          printer.print(Printer::Student, id, 'B', flavour, machine->inventory()[flavour]);
-          purchases--;
-          default:
-            break;
-        }
     }
-
     printer.print( Printer::Student, id, 'F' );
 }
 

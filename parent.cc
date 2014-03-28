@@ -29,6 +29,7 @@ void Parent::main() {
             bank.deposit( winner, amount );
             printer.print( Printer::Parent, 'D', winner, amount );
         }
+
     }
     printer.print( Printer::Parent, 'F' );
 }
