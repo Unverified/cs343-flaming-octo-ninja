@@ -45,7 +45,7 @@ void Student::main() {
 
         yield( mprng( 1, 10 ) );
 
-        for(;;) {
+        while(true){
             try {
                 purchaseStatus = machine->buy( flavour, *fwatCard() );
                 break;

@@ -1,4 +1,7 @@
 #include "watcardOffice.h"
+#include "MPRNG.h"
+
+extern MPRNG mprng;
 
 WATCardOffice::WATCardOffice( Printer &prt, Bank &bank, unsigned int numCouriers )
   : printer( prt ), bank( bank ), nCouriers( numCouriers ) {
@@ -76,9 +79,14 @@ void WATCardOffice::Courier::main() {
         printer.print( Printer::Courier, id, 't', job->sid, job->amount );
         bank.withdraw( job->sid, job->amount );
         job->card->deposit( job->amount );
-        job->result.delivery( job->card );
-        printer.print( Printer::Courier, id, 'T', job->sid, job->amount );
 
+        if( mprng( 6 ) ) {
+            job->result.delivery( job->card );
+        } else {
+            job->result.exception( new WATCardOffice::Lost );
+        }
+        
+        printer.print( Printer::Courier, id, 'T', job->sid, job->amount );
         delete job;
     }
     printer.print( Printer::Courier, id, 'F' );
