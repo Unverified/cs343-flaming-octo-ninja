@@ -4,15 +4,16 @@
 #include "printer.h"
 #include "nameServer.h"
 #include "truck.h"
+#include "vendingMachine.h"
 
 _Task BottlingPlant {
     Printer &printer;
     NameServer &nameServer;
-    const unsigned int nVendingMachines;
     const unsigned int maxShippedPerFlavour;
-    const unsigned int maxStockPerFlavour;
     const unsigned int timeBetweenShipments;
 
+    bool isRunning;
+    unsigned int shipment[VendingMachine::FINAL_COUNT];
     Truck *truck;
 
     void main();

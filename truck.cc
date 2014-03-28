@@ -1,5 +1,5 @@
 #include "bottlingPlant.h"
-
+#include "vendingMachine.h"
 #include "truck.h"
 
 Truck::Truck( Printer &prt
@@ -16,12 +16,9 @@ Truck::Truck( Printer &prt
 
 void Truck::main() {
     printer.print(Printer::Truck, 'S');
+    unsigned int cargo[VendingMachine::FINAL_COUNT];
+    while( !plant.getShipment( cargo ) ) {
 
-    for(;;) {
-        _Accept( ~Truck ) {
-            break;
-        }
     }
-
     printer.print( Printer::Truck, 'F' );
 }
