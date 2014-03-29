@@ -84,6 +84,7 @@ void WATCardOffice::Courier::main() {
             job->result.delivery( job->card );
         } else {
             job->result.exception( new WATCardOffice::Lost );
+            delete( job->card );
         }
         
         printer.print( Printer::Courier, id, 'T', job->sid, job->amount );
