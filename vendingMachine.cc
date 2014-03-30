@@ -8,8 +8,8 @@ VendingMachine::VendingMachine( Printer &prt
                               , unsigned int sodaCost
                               , unsigned int maxStockPerFlavour )
   : printer( prt ), nameServer( nameServer ), id( id ), price( sodaCost ), maxStockPerFlavour( maxStockPerFlavour ) {
-    for( unsigned int i; i < FINAL_COUNT; i += 1 ) {
-        stock[i] = 1;   
+    for( unsigned int i; i < FLAVOUR_COUNT; i += 1 ) {
+        stock[i] = 0;   
     }
 
     nameServer.VMregister( this );
@@ -20,8 +20,10 @@ void VendingMachine::main() {
     for(;;) {
         _Accept( ~VendingMachine ) {
             break;
-        }or _Accept( buy, inventory, restocked ) {
-        }
+        }or _Accept( inventory ) {
+//            _Accept( restocked );
+        } or _Accept( restocked ) {
+        }or _Accept( buy );
     }
     printer.print( Printer::Vending, id, 'F' );
 }
@@ -31,6 +33,7 @@ VendingMachine::Status VendingMachine::buy( Flavours flavour, WATCard &card ) {
   if( card.getBalance() < cost() ) { return FUNDS; }
     
     card.withdraw( cost() );
+    stock[flavour] -= 1;
     printer.print( Printer::Vending, id, 'B', flavour, stock[flavour] );
 
   return BUY;
@@ -41,8 +44,6 @@ unsigned int *VendingMachine::inventory() {
 }
 
 void VendingMachine::restocked() {
-    bool implemented = false;
-    assert( implemented );
 }
 
 _Nomutex unsigned int VendingMachine::cost() {

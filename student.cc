@@ -15,7 +15,7 @@ Student::Student( Printer &prt,
   , maxPurchases( maxPurchases ) {
       
   purchases = mprng( 1, maxPurchases );
-  flavour = (VendingMachine::Flavours) mprng( VendingMachine::FINAL_COUNT - 1 );
+  flavour = (VendingMachine::Flavours) mprng( VendingMachine::FLAVOUR_COUNT - 1 );
 }
 
 Student::~Student() {

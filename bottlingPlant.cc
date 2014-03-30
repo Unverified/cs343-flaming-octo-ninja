@@ -26,7 +26,7 @@ void BottlingPlant::main() {
     printer.print( Printer::BottlingPlant, 'S' );
     for(;;) {
         unsigned int generated = 0;
-        for( unsigned int i = 0; i < VendingMachine::FINAL_COUNT; i += 1 ) {
+        for( unsigned int i = 0; i < VendingMachine::FLAVOUR_COUNT; i += 1 ) {
             unsigned int amountFlavourGenerated = mprng( maxShippedPerFlavour );
             shipment[i] = amountFlavourGenerated;
             generated += amountFlavourGenerated;
@@ -48,7 +48,7 @@ void BottlingPlant::main() {
 
 bool BottlingPlant::getShipment( unsigned int cargo[] ) {
   if( !isRunning ) { return true; } 
-    for( unsigned int i = 0; i < VendingMachine::FINAL_COUNT; i += 1 ) {
+    for( unsigned int i = 0; i < VendingMachine::FLAVOUR_COUNT; i += 1 ) {
         cargo[i] = shipment[i];
     }
     return false;

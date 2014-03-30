@@ -16,7 +16,7 @@ _Task VendingMachine {
 
     void main();
   public:
-    enum Flavours { CHERRY, CREAMSODA, ROOTBEER, LIME, FINAL_COUNT }; // flavours of soda (YOU DEFINE)
+    enum Flavours { CHERRY, CREAMSODA, ROOTBEER, LIME, FLAVOUR_COUNT }; // flavours of soda (YOU DEFINE)
     enum Status { BUY, STOCK, FUNDS };     // purchase status: successful buy, out of stock, insufficient funds
     VendingMachine( Printer &prt, NameServer &nameServer, unsigned int id, unsigned int sodaCost, unsigned int maxStockPerFlavour );
     Status buy( Flavours flavour, WATCard &card );
@@ -25,7 +25,7 @@ _Task VendingMachine {
     _Nomutex unsigned int cost();
     _Nomutex unsigned int getId();
   private:
-    unsigned int stock[FINAL_COUNT];
+    unsigned int stock[FLAVOUR_COUNT];
   
 };
 

@@ -13,7 +13,7 @@ _Task BottlingPlant {
     const unsigned int timeBetweenShipments;
 
     bool isRunning;
-    unsigned int shipment[VendingMachine::FINAL_COUNT];
+    unsigned int shipment[VendingMachine::FLAVOUR_COUNT];
     Truck *truck;
 
     void main();
