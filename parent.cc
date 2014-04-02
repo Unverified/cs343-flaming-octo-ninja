@@ -22,8 +22,8 @@ void Parent::main() {
         _Accept( ~Parent ) {
             break;
         } _Else { 
-            unsigned int winner = mprng( nStudents-1 );
             unsigned int amount = mprng( MIN_CASH, MAX_CASH );
+            unsigned int winner = mprng( nStudents-1 );
             
             yield( delay );
             bank.deposit( winner, amount );

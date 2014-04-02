@@ -11,7 +11,7 @@ VendingMachine::VendingMachine( Printer &prt
     for( unsigned int i; i < FLAVOUR_COUNT; i += 1 ) {
         stock[i] = 0;   
     }
-
+    restocking = false;
     nameServer.VMregister( this );
 }
 
@@ -20,10 +20,13 @@ void VendingMachine::main() {
     for(;;) {
         _Accept( ~VendingMachine ) {
             break;
-        }or _Accept( inventory ) {
-//            _Accept( restocked );
+        } or _Accept( inventory ) {
+            printer.print( Printer::Vending, id, 'r' );
+            restocking = true;
         } or _Accept( restocked ) {
-        }or _Accept( buy );
+            printer.print( Printer::Vending, id, 'R' );
+            restocking = false;
+        } or _When (!restocking) _Accept( buy );
     }
     printer.print( Printer::Vending, id, 'F' );
 }

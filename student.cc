@@ -37,7 +37,7 @@ void Student::main() {
             fwatCard = cardOffice.transfer( id, machine->cost() + 5, fwatCard );  
           break;
         case VendingMachine::BUY:
-            printer.print( Printer::Student, id, 'B', flavour, machine->inventory()[flavour] );
+            printer.print( Printer::Student, id, 'B', fwatCard()->getBalance() );
             purchases -= 1;
         default:
           break;

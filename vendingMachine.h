@@ -12,7 +12,7 @@ _Task VendingMachine {
     const unsigned int id;
     const unsigned int price;
     const unsigned int maxStockPerFlavour;
-
+    bool restocking;
 
     void main();
   public:

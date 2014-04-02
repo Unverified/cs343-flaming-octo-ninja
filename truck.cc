@@ -22,6 +22,7 @@ Truck::Truck( Printer &prt
 #include <iostream>
 void Truck::main() {
     printer.print(Printer::Truck, 'S');
+    VendingMachine **machines = nameServer.getMachineList();	//begins by obtaining a list of vending machines from the nameserver
     unsigned int cargo[VendingMachine::FLAVOUR_COUNT];
     while( true ) {
         yield( mprng( 1, MAX_COFFEE_WAIT ) );
@@ -33,7 +34,6 @@ void Truck::main() {
         }
         printer.print( Printer::Truck, 'P', totalCargo );
 
-        VendingMachine **machines = nameServer.getMachineList();
         for( unsigned int i = 0; i < nVendingMachines && totalCargo > 0; i += 1 ) {
             unsigned int *stock = machines[i]->inventory();
             printer.print( Printer::Truck, 'd', totalCargo );
