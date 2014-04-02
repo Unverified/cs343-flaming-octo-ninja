@@ -2,7 +2,7 @@
 #include "vendingMachine.h"
 #include "truck.h"
 #include "MPRNG.h"
-
+#include <iostream>
 extern MPRNG mprng;
 const static unsigned int MAX_COFFEE_WAIT = 10;
 
@@ -36,14 +36,14 @@ void Truck::main() {
 
         for( unsigned int i = 0; i < nVendingMachines && totalCargo > 0; i += 1 ) {
             unsigned int *stock = machines[i]->inventory();
-            printer.print( Printer::Truck, 'd', totalCargo );
+            printer.print( Printer::Truck, 'd', machines[i]->getId(), totalCargo );
 
             unsigned int amtNotFilled = 0;
             for( unsigned int j = 0; j < VendingMachine::FLAVOUR_COUNT; j += 1 ) {
-                unsigned int amtToStock = maxStockPerFlavour - stock[i];
-                unsigned int amtRestocked = cargo[i] > amtToStock ? amtToStock : cargo[i];
-                cargo[i] -= amtRestocked;
-                stock[i] += amtRestocked;
+                unsigned int amtToStock = maxStockPerFlavour - stock[j];
+                unsigned int amtRestocked = cargo[j] > amtToStock ? amtToStock : cargo[j];
+                cargo[j] -= amtRestocked;
+                stock[j] += amtRestocked;
                 totalCargo -= amtRestocked;
                 amtNotFilled += (amtToStock - amtRestocked);
             }

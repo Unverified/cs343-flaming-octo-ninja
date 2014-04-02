@@ -1,0 +1,3 @@
+- The 1st test tests to many arguments
+- The 2nd test tests a negative seed
+- The 3rd test tests a non-existant config file

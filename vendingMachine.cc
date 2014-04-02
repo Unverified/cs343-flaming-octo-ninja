@@ -8,7 +8,8 @@ VendingMachine::VendingMachine( Printer &prt
                               , unsigned int sodaCost
                               , unsigned int maxStockPerFlavour )
   : printer( prt ), nameServer( nameServer ), id( id ), price( sodaCost ), maxStockPerFlavour( maxStockPerFlavour ) {
-    for( unsigned int i; i < FLAVOUR_COUNT; i += 1 ) {
+    stock = new unsigned int[FLAVOUR_COUNT];
+    for( unsigned int i = 0; i < FLAVOUR_COUNT; i += 1 ) {
         stock[i] = 0;   
     }
     restocking = false;
