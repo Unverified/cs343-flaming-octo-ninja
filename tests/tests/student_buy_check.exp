@@ -1,0 +1,4 @@
+On start up, we see that 2 students start up and pick a vending machine. Then in WATOff we see 2 watcards are created and the first courier picks up the job for S0 and the second courier picks up the second job for S1.
+Students do not buy any sodas while the couriers are transfering the money since they have no money. Then Cour1 completes the transfer and we see Stud1 then buys soda from Mach1. The same occurs for Cour0 and Stud0.
+Also Stud0 and Stud1 started with 2 buys and there are only 2 B print statements in each column.
+For bottling plant and truck, we see the plant create a shippment of 50 bottles and the truck picks up the 50 bottles, delivers all 50 to Mach0 and goes to pick up the next shippment.

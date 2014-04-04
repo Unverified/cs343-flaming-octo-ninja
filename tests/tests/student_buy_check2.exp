@@ -1,0 +1,3 @@
+After the initial transfer of 5 dollars, Stud1 attempts to buy but the truck has not stocked the vending machines at that point so the student requests a new vending machine from the nameserver. 
+Stud0 attempts to buy when its initial 5 dollar transfer completes but he discovers his card was lost. We then see the WATOff creates a new card for him and the courier starts a new 5 dollar transfer.
+Meanwhile, Stud1 is trying to find a vending machine we his favorit flavour but the truck still has not delivered it to any of the machines. Also, we can see Stud1 (and Stud0) never try to buy when a truck is restocking a machine (inbetween r and R)

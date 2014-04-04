@@ -45,10 +45,6 @@ void Printer::printEnd() {
 void Printer::flush() {
   for( ; !mBuffer.empty(); mCurCol++) {	// Constintly loop, printing whats at the front of the buffer and breaking if the buffer is empty
     Entry entry = mBuffer.front();
-    if(entry.col < mCurCol) {		// If the next id in the buffer is less than the current column we are printing we need to wrap to the next line
-      cout << endl;			// Print a newline
-      mCurCol = 0;				// Set the column we are printing to the first one, ie 0
-    }
  
     if(mCurCol != 0) cout << "\t";		// Print a tab character is the column we are printing is no the first one
     if(entry.col == mCurCol) {		// If the column we are printing matches the next id in the buffer then print that entry
@@ -56,6 +52,9 @@ void Printer::flush() {
       mBuffer.pop_front();		// Remove the entry from the buffer
     }
   }
+
+  cout << endl;
+  mCurCol = 0;
 }
 
 Printer::Entry Printer::createBufferEntry(unsigned int col, char state, int value1, int value2, bool finisher) {

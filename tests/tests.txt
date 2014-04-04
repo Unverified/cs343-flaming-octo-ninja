@@ -1,1 +1,3 @@
 bad_cmd_line
+student_buy_check
+student_buy_check2

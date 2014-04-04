@@ -27,7 +27,7 @@ void Student::main() {
     fwatCard = cardOffice.create( id, 5 );
 
     VendingMachine::Status purchaseStatus = VendingMachine::STOCK;    
-    while( purchases > 0 ) {
+    while( true ) {
         switch( purchaseStatus ) {
         case VendingMachine::STOCK:
             machine = nameServer.getMachine( id );
@@ -42,6 +42,8 @@ void Student::main() {
         default:
           break;
         }
+
+      if( purchases == 0 ) { break; }
 
         yield( mprng( 1, 10 ) );
 
